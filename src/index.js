@@ -36,6 +36,22 @@ app.use(express.static('public'));
 // PDFルート
 app.use('/api/pdf', pdfRoutes);
 
+// ルートパス
+app.get('/', (req, res) => {
+  res.json({
+    status: 'OK',
+    timestamp: new Date().toISOString(),
+    message: '二宮不動産査定システムAPI',
+    version: '1.0.0',
+    endpoints: {
+      health: '/health',
+      webhook: '/webhook',
+      api: '/api/*'
+    },
+    documentation: 'https://github.com/ninomiya33/fudousan.ai'
+  });
+});
+
 // ヘルスチェック
 app.get('/health', (req, res) => {
   res.json({
