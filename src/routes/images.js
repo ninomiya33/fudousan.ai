@@ -1,59 +1,28 @@
 const express = require('express');
-const path = require('path');
 const router = express.Router();
 
-// 画像ファイルを提供するルート
+// 画像ファイルを提供するルート（プレースホルダー）
 router.get('/images/:category/:filename', (req, res) => {
   const { category, filename } = req.params;
-  const imagePath = path.join(__dirname, '../../public/images', category, filename);
   
-  // 画像ファイルの存在確認
-  if (require('fs').existsSync(imagePath)) {
-    res.sendFile(imagePath);
-  } else {
-    // 画像が存在しない場合はデフォルト画像を返す
-    const defaultImagePath = path.join(__dirname, '../../public/images/default.png');
-    if (require('fs').existsSync(defaultImagePath)) {
-      res.sendFile(defaultImagePath);
-    } else {
-      res.status(404).json({ error: 'Image not found' });
-    }
-  }
+  // 画像が存在しない場合はプレースホルダーを返す
+  res.status(404).json({ 
+    error: 'Image not found',
+    message: '画像ファイルは削除されました',
+    category,
+    filename,
+    note: '本番環境では外部画像サービスを使用してください'
+  });
 });
 
-// 画像一覧を取得するAPI
+// 画像一覧を取得するAPI（プレースホルダー）
 router.get('/list', (req, res) => {
-  const fs = require('fs');
-  const imagesDir = path.join(__dirname, '../../public/images');
-  const imageList = {};
-
-  try {
-    if (fs.existsSync(imagesDir)) {
-      const categories = fs.readdirSync(imagesDir);
-      
-      categories.forEach(category => {
-        const categoryPath = path.join(imagesDir, category);
-        if (fs.statSync(categoryPath).isDirectory()) {
-          const files = fs.readdirSync(categoryPath);
-          imageList[category] = files.filter(file => 
-            /\.(png|jpg|jpeg|gif)$/i.test(file)
-          );
-        }
-      });
-    }
-    
-    res.json({
-      success: true,
-      images: imageList,
-      baseUrl: `${req.protocol}://${req.get('host')}/api/images`
-    });
-  } catch (error) {
-    res.status(500).json({
-      success: false,
-      error: 'Failed to read image directory',
-      details: error.message
-    });
-  }
+  res.json({
+    success: true,
+    images: {},
+    message: '画像ファイルは削除されました',
+    note: '本番環境では外部画像サービスを使用してください'
+  });
 });
 
 // 画像のアップロード（開発用）
