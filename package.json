@@ -1,0 +1,45 @@
+{
+  "name": "ninomiya-fudousan-api",
+  "version": "1.0.0",
+  "description": "不動産査定システムAPI with LINE Bot integration",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "mcp": "node src/mcpServer.js",
+    "vercel-build": "echo 'Build completed'",
+    "test": "jest",
+    "setup": "node scripts/setup.js"
+  },
+  "dependencies": {
+    "@line/bot-sdk": "^7.5.2",
+    "@modelcontextprotocol/sdk": "^0.4.0",
+    "@supabase/storage-js": "^2.11.0",
+    "@supabase/supabase-js": "^2.38.4",
+    "axios": "^1.6.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.6.1",
+    "express": "^4.18.2",
+    "googleapis": "^128.0.0",
+    "helmet": "^7.1.0",
+    "joi": "^17.11.0",
+    "moment": "^2.29.4",
+    "multer": "^1.4.5-lts.1",
+    "node-cron": "^3.0.3",
+    "pdf-lib": "^1.17.1",
+    "pdfkit": "^0.17.1"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "nodemon": "^3.0.2"
+  },
+  "keywords": [
+    "real-estate",
+    "appraisal",
+    "line-bot",
+    "api",
+    "supabase"
+  ],
+  "author": "Ninomiya Fudousan",
+  "license": "MIT"
+}
